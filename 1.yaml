@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-basics1
+  labels:
+    app: app4-nginx
+  annotations:
+
+    alb.ingress.kubernetes.io/load-balancer-name: chaitu-sample
+    alb.ingress.kubernetes.io/group.name: one
+    alb.ingress.kubernetes.io/group.order: '20'
+spec:
+  rules:
+    - host: sample.azcart.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service1
+                port:
+                  number: 80
